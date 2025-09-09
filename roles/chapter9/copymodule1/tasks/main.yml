@@ -1,0 +1,6 @@
+---
+# tasks file for copymodule
+- ansible.builtin.copy:
+    src: /etc/hosts
+    dest: backup
+    follow: no

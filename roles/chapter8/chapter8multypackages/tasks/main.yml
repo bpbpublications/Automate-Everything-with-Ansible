@@ -1,0 +1,12 @@
+---
+# tasks file for chapter8multypackages
+- name: Installing the package for the apache server
+  ansible.builtin.yum:
+    name: "{{item}}" 
+    state: latest
+  with_items:
+    - git
+    - nginx
+    - httpd
+    - php
+  become: yes

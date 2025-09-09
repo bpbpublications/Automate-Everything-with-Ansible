@@ -1,0 +1,8 @@
+---
+- name: collect default set of facts
+  junipernetworks.junos.junos_command:
+    commands: show version
+    display: set
+  register: output
+- debug:
+    msg: "{{output}}"

@@ -1,0 +1,21 @@
+- name: Merge provided configuration with device configuration
+  cisco.asa.asa_acls:
+    config:
+      acls:
+        - name: DemoACL
+          acl_type: extended
+          aces:
+          - grant: permit
+            line: 1
+            protocol_options:
+              tcp: true
+            source:
+              object_group: DemoNetwork 
+            destination:
+              address: 192.0.3.0
+              netmask: 255.255.255.0
+              port_protocol:
+                range:
+                  start: 80
+                  end: 443
+            log: default

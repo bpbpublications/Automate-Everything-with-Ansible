@@ -1,0 +1,7 @@
+---
+# tasks file for winshell
+- name: Copy a single file
+  win_shell: dir
+  register: output
+- debug:
+    msg: "{{output}}"

@@ -1,0 +1,7 @@
+---
+# tasks file for chapter8installnginx
+- name: Installing the package for the apache server
+  ansible.builtin.yum:
+    name: nginx
+    state: latest
+  become: yes

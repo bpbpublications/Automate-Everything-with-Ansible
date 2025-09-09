@@ -1,0 +1,6 @@
+---
+- name: Add the user demo 
+  ansible.builtin.template:
+    src: jinjatemplate.j2
+    dest: /var/www/html/index.html
+

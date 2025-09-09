@@ -1,0 +1,8 @@
+---
+- name: Network Getting Started First Playbook
+  connection: local
+  gather_facts: false
+  hosts: dbservers
+  roles:
+  - Demorole
+

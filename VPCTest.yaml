@@ -1,0 +1,6 @@
+---
+# EC2 Instance provisioning Demo
+- name: EC2 Instance provisioning Demo
+  hosts: localhost
+  roles:
+  - NewVPC

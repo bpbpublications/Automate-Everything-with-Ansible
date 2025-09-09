@@ -1,0 +1,8 @@
+---
+# tasks file for copymodule
+- name: test
+  shell: uptime
+  register: output
+- ansible.builtin.copy:
+    content: "{{output}}"
+    dest: temp.txt

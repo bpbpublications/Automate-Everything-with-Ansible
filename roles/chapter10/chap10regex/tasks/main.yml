@@ -1,0 +1,9 @@
+---
+- name: Add the user demo 
+  command: cat /etc/passwd
+  register: output
+
+- name: Print it is there
+  command: echo "Yes demo user is there"
+  become: yes
+  when: output.stdout is regex ('demo')

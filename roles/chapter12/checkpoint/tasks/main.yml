@@ -1,0 +1,16 @@
+---
+- name: Demo Objects
+  cp_mgmt_address_range:
+    auto_publish_session: true
+    ip_address_first: 172.10.2.1
+    ip_address_last: 172.10.2.10
+    name: juniper
+    state: present
+- name: Demo policy push
+  cp_mgmt_install_policy:
+    access: true
+    policy_package: standard
+    targets:
+    -  i-062f58f0f9324311c
+    threat_prevention: true
+

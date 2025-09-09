@@ -1,0 +1,21 @@
+---
+- name: Demo VM
+  azure_rm_resourcegroup:
+    name: myResourceGroup
+    location: westus
+  register: variable
+
+- name: Demo VM
+  azure_rm_virtualmachine:
+    resource_group: "{{variable.state.name}}"
+    name: DummmyVM
+    admin_username: demouser
+    admin_password: demouser@1234demo
+    image:
+      offer: Centos
+      publisher: OpenLogic
+      sku: '7.7'
+      version: latest
+    vm_size: Standard_DS3_v2
+
+

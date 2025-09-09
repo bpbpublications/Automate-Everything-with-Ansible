@@ -1,0 +1,55 @@
+ansible-galaxy init demorole
+ansible-playbook SecondPlaybook.yaml -u ec2-user --private-key MtOWER.pem
+ansible-playbook SecondPlaybook.yaml -u ec2-user --private-key MtOWER.pem -vvv
+ansible-playbook SecondPlaybook.yaml -u ec2-user --private-key MtOWER.pem -vvvv
+
+# SSH timeout
+#timeout = 10
+
+
+#This controls the cutoff point (in bytes) on --diff for files
+# set to 0 for unlimited (RAM may suffer!).
+#max_diff_size = 1048576
+
+
+[paramiko_connection]
+
+# uncomment this line to cause the paramiko connection plug-in to not record new host
+# keys encountered.  Increases performance on new host additions.  Setting works independently of the
+# host key checking setting above.
+#record_host_keys=False
+
+# by default, Ansible requests a pseudo-terminal for commands executed under sudo. Uncomment this
+# line to disable this behavior.
+#pty=False
+
+# paramiko will default to looking for SSH keys initially when trying to
+# authenticate to remote devices.  This is a problem for some network devices
+# that close the connection after a key failure.  Uncomment this line to
+# disable the Paramiko look for keys function
+#look_for_keys = False
+
+# When using persistent connections with Paramiko, the connection runs in a
+# background process.  If the host doesn't already have a valid SSH key, by
+# default Ansible will prompt to add the host key.  This will cause connections
+# running in background processes to fail.  Uncomment this line to have
+# Paramiko automatically add host keys.
+#host_key_auto_add = True
+
+
+Now if you want Ansible to automatically add the newly added host into the known_hostfile then this is the location where you will enable that. You will get the answer of your homework here.
+
+[persistent_connection]
+
+# Configures the persistent connection timeout value in seconds.  This value is
+# how long the persistent connection will remain idle before it is destroyed.
+# If the connection doesn't receive a request before the timeout value
+# expires, the connection is shutdown. The default value is 30 seconds.
+#connect_timeout = 30
+
+# The command timeout value defines the amount of time to wait for a command
+# or RPC call before timing out. The value for the command timeout must
+# be less than the value of the persistent connection idle timeout (connect_timeout)
+# The default value is 30 second.
+#command_timeout = 30
+

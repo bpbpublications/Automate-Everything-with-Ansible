@@ -1,0 +1,30 @@
+---
+# tasks file for chap13masternode
+- name: Start the services of Docker
+  ansible.builtin.shell: |
+    kubeadm config images pull
+- name: initiate the master node
+  ansible.builtin.shell: kubeadm init --apiserver-advertise-address=172.31.1.216 --pod-network-cidr 10.10.0.0/16 --ignore-preflight-errors=all
+  register: output
+- debug:
+    msg: "{{output}}"
+- name: start kubelet services
+  service:
+    name: "{{item}}"
+    enabled: yes
+    state: restarted
+  with_items:
+    - kubelet
+    - docker
+- name: directory
+  file:
+    path: $HOME/.kube
+    state: directory 
+    mode: 0766
+- name: kube configuration copy
+  copy:
+    src: /etc/kubernetes/admin.conf 
+    dest: /root/.kube/config 
+    remote_src: yes
+- name: Flannel configuration
+  command: kubectl apply -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml

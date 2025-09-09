@@ -1,0 +1,8 @@
+---
+- name: Network Getting Started First Playbook
+  gather_facts: false
+  hosts: Demoserver
+  tasks:
+  - name: Demo of Tasks
+    ansible.builtin.shell: uptime
+

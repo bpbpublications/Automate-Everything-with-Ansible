@@ -1,0 +1,7 @@
+---
+# tasks file for cumuluschapt11
+- name: Demo of cumulus Module ansible 
+  nclu:
+    commands:
+      - add int swp2
+      - add int swp3

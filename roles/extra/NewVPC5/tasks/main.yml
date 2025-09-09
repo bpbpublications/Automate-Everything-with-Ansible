@@ -1,0 +1,33 @@
+---
+# tasks file for NewVPC and we will run our first VPC from Zero
+- name: Demo VPC
+  ec2_vpc_net:
+    name: TinyNetwork
+    cidr_block: 10.45.25.0/24
+    region: us-east-2
+    tenancy: dedicated
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+  register: subnetinfo
+- debug:
+    msg: "{{ subnetinfo.vpc.id }}" 
+
+- name: How to create the Subnet in AWS using Ansible
+  ec2_vpc_subnet:
+    state: present
+    vpc_id: "{{subnetinfo.vpc.id}}"
+    cidr: 10.45.25.0/26
+    region: us-east-2
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+
+- name: Create the Internet Gateway
+  ec2_vpc_igw:
+    vpc_id: "{{subnetinfo.vpc.id}}"
+    state: present
+    region: us-east-2
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+  register: igw
+
+

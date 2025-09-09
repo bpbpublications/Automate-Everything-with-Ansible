@@ -1,0 +1,9 @@
+---
+# tasks file for multiplepackagechapter9
+- name: Install a specific package
+  ansible.builtin.yum:
+    name: httpd >=2
+    state: present
+    enablerepo: "epel-release"
+  become: yes
+

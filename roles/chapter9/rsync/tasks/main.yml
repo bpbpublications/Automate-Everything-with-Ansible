@@ -1,0 +1,5 @@
+---
+- name: Install bottle python package
+  ansible.builtin.pip:
+    name: pandas 
+    state: absent

@@ -1,0 +1,4 @@
+---
+- name: Demo of Cisco IOS router 
+  cisco.ios.ios_command:
+    commands: show ver

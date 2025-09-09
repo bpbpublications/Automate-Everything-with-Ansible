@@ -1,0 +1,6 @@
+---
+- name: Install bottle python package
+  ansible.builtin.dnf:
+    name: httpd
+    state: latest
+  become: yes

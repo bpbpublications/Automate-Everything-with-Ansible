@@ -1,0 +1,7 @@
+---
+# tasks file for chapter8windowsfeature
+- name: Test website
+  ansible.windows.win_feature:
+    name: Web-Server
+    state: absent
+

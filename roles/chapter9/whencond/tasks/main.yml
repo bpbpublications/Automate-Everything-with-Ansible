@@ -1,0 +1,17 @@
+---
+- name: Information about the IOS router
+  cisco.ios.ios_facts:
+    gather_subset: all
+- name: Let's upgrade
+  block:
+  - name: Copy the image
+    cisco.ios.ios_command:
+      commands:
+        - command: "copy tftp://172.31.33.97/abcd.txt bootflash://newabcd.txt"
+          prompt: '\[newabcd\.txt\]\?'
+          answer: "\r"
+  - name: change the boot menu
+    ios_config:
+      lines: hostname Newbootimage
+      save_when: modified
+  when: ansible_facts['net_iostype'] == "IOS-XE"

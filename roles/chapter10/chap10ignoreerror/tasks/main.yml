@@ -1,0 +1,15 @@
+---
+- name: Task two generate the error
+  block:
+    - name: Debug module 
+      ansible.builtin.debug:
+        msg: 'Normal execution'
+
+    - name: Failure
+      ansible.builtin.command: /bin/false 
+
+    - name: skipped
+      ansible.builtin.debug:
+        msg: 'since the task two failed i will be skipped'
+  when: ansible_facts['os_family'] == "RedHat"
+  ignore_errors: true 

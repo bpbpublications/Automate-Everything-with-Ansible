@@ -1,0 +1,7 @@
+---
+- name: Information about the IOS router 
+  cisco.ios.ios_facts:
+    gather_subset: all
+  register: output
+- debug:
+    msg: "{{output.ansible_facts.ansible_net_version}}" 

@@ -1,0 +1,8 @@
+---
+# tasks file for ciscochap11prompt
+- name: Run commands that require answering a prompt
+  cisco.ios.ios_command:
+    commands:
+      - command: "reload"
+        prompt: ' \[confirm\]'
+        answer: "n"

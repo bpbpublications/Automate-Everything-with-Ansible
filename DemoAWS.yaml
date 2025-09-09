@@ -1,0 +1,15 @@
+# First ever Code of AWS using Ansible
+- name: EC2 Instace Creation
+  hosts: all 
+  ignore_errors: yes
+  gather_facts: no
+  roles:
+  - chap13kubepackage
+  - chap13kubepackage1
+  - chap13kubepackage2start
+  - chap13kubepackagelist
+  - chap13kubepackageiptables
+  - chap13masternode
+  - chap13installdocker
+  - chap13infoimage
+

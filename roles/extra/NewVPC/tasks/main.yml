@@ -1,0 +1,11 @@
+---
+# tasks file for NewVPC
+- name: Demo VPC
+  ec2_vpc_net:
+    name: BigNetwork
+    cidr_block: 10.20.0.0/16
+    region: us-east-2
+    tenancy: dedicated
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+

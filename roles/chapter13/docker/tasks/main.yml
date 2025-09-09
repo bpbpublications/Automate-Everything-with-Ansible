@@ -1,0 +1,5 @@
+---
+- name: Create default containers
+  community.docker.docker_image:
+    name: pacur/centos-7 
+    source: pull

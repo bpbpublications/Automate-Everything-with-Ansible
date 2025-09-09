@@ -1,0 +1,7 @@
+- name: Merge provided configuration with device configuration
+  cisco.asa.asa_config:
+    lines: 
+    - network-object host 10.20.3.1 
+    - network-object host 10.30.70.1 
+    - network-object host 10.40.0.1
+    parents: [object-group network DemoNetwork] 

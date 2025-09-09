@@ -1,0 +1,12 @@
+---
+- name: load new acl into device
+  ios_config:
+    lines:
+      - desc testing123
+    parents: "{{ item }}"
+  with_items:
+    - inter lo0
+    - inter lol
+  register: output
+- debug:
+    msg: "{{output}}"

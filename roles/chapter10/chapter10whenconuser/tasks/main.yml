@@ -1,0 +1,14 @@
+---
+- name: Add the user demo 
+  command: cat /etc/passwd
+  register: output
+- name: Print it is there
+  ansible.builtin.user:
+    name: demouser
+    comment: demouser1
+    uid: 200
+    #group: admin
+    password:  "$6$ashusalt$g1QjIFdlQ.p3EjrI3B6PksGnS3TIn.rwXKHItq7aIzVU7VAa28P7kt7gUk4At64sxoYq2qGZIet9aQu3i.296/"
+  become: yes
+  when: output.stdout is not contains ("demo")
+

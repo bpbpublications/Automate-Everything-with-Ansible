@@ -1,0 +1,95 @@
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+Once that is done we need to install powershell in our windows host. Use the below configuration to
+make the powershell working.
+
+$url = &quot;https://raw.githubusercontent.com/jborean93/ansible-windows/master/scripts/Upgrade-
+PowerShell.ps1&quot;
+$file = &quot;$env:temp\Upgrade-PowerShell.ps1&quot;
+$username = &quot;Administrator&quot;
+$password = &quot;PJOG@VR4pksLYpF)C4.32O8bYn0Khp0p&quot;
+(New-Object -TypeName System.Net.WebClient).DownloadFile($url, $file)
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force
+&amp;$file -Version 5.1 -Username $username -Password $password -Verbose
+
+
+Enable-PSRemoting -Force
+Set-Item -Path WSMan:\localhost\Service\Auth\Certificate -Value $true
+Set-Item -Path &#39;WSMan:\localhost\Service\AllowUnencrypted&#39; -Value $true
+Set-Item -Path &#39;WSMan:\localhost\Service\Auth\Basic&#39; -Value $true
+Set-Item -Path &#39;WSMan:\localhost\Service\Auth\CredSSP&#39; -Value $true
+
+winrm enumerate winrm/config/Listener
+
+
+winrm quickconfig -transport:https
+
+$cert = New-SelfSignedCertificate -DnsName $(Invoke-RestMethod -Uri http://169.254.169.254/latest/meta-data/public-hostname) -CertStoreLocation "cert:\LocalMachine\My"
+
+winrm create winrm/config/Listener?Address=*+Transport=HTTPS "@{Hostname=`"$(Invoke-RestMethod -Uri http://169.254.169.254/latest/meta-data/public-hostname)`";CertificateThumbprint=`"$($cert.Thumbprint)`"}"
+
+
+New-NetFirewallRule -DisplayName "TCP HTTPS" -Direction Inbound -LocalPort 5986 -Protocol TCP -Action Allow
+
+New-NetFirewallRule -DisplayName "TCP HTTPS" -Direction Inbound -LocalPort 5985 -Protocol TCP -Action Allow
+
+
+
+Get-Item WSMan:\localhost\Client\TrustedHosts
+
+
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value 10.20.30.40
+
+
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value “*” 
+
+New-ItemProperty -Name LocalAccountTokenFilterPolicy -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System -PropertyTypeDWord -Value 1 -Force
+
+pip3 install "pywinrm>=0.3.0" –user
+pip3 install --upgrade pip
+pip3 install setuptools_rust
+pip3 install rust
+
+
+vi demoserver.ini
+
+[demoserver] 
+x.x.x.x
+
+[demoserver:vars] # These are the group variables
+ansible_user=usernameofWindows
+ansible_password="password"
+ansible_port=5986
+ansible_connection=winrm
+ansible_winrm_scheme=https
+ansible_winrm_server_cert_validation=ignore
+ansible_winrm_kerberos_delegation=true
+
+
+
+ansible_user: user
+ansible_password: passwd
+ansible_connection: winrm
+ansible_winrm_transport: basic
+
+Set-Item -Path WSMan:\localhost\Service\Auth\Basic -Value $true
+
+ansible_connection: winrm
+ansible_winrm_cert_pem: /tmp/key.pem
+ansible_winrm_cert_key_pem: /tmp/certificate/private/key.pem
+ansible_winrm_transport: certificate
+
+
+Set-Item -Path WSMan:\localhost\Service\Auth\Certificate -Value $true
+
+yum-yinstallgccpython-develkrb5-develkrb5-libskrb5-workstation
+pip install pywinrm[kerberos]
+
+
+winrm get winrm/config/Service
+ansible_user: Username
+ansible_password: Password
+ansible_connection:winrm
+ansible_winrm_transport:credssp
+
+
+

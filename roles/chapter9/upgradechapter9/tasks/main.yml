@@ -1,0 +1,6 @@
+---
+# tasks file for upgradechapter9
+- name: Install  updates
+  ansible.builtin.apt:
+    upgrade: dist
+  become: yes

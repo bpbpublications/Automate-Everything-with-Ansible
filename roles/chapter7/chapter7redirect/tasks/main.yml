@@ -1,0 +1,4 @@
+---
+# tasks file for chapter7commandmodule
+- name: Return motd to registered var
+  ansible.builtin.shell: /usr/bin/python hello.py 

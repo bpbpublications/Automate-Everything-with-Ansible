@@ -1,0 +1,34 @@
+---
+- name: Demo VM
+  azure_rm_resourcegroup:
+    name: myResourceGroup
+    location: westus
+  register: variable
+
+- name: Create a virtual network
+  azure_rm_virtualnetwork:
+    resource_group: "{{variable.state.name}}"
+    name: myVirtualNetwork
+    address_prefixes_cidr:
+      - "10.10.0.0/16"
+      - "172.100.0.0/16"
+
+- name: Create a subnet
+  azure_rm_subnet:
+    resource_group: "{{variable.state.name}}"
+    virtual_network_name: myVirtualNetwork
+    name: mySubnet
+    address_prefix_cidr: "10.10.0.0/24"
+
+- name: Demo VM
+  azure_rm_virtualmachine:
+    resource_group: "{{variable.state.name}}"
+    name: DummmyVM
+    admin_username: demouser
+    admin_password: demouser@1234demo
+    image:
+      offer: Centos
+      publisher: OpenLogic
+      sku: '7.7'
+      version: latest
+    vm_size: Standard_DS3_v2

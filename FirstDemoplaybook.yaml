@@ -1,0 +1,8 @@
+---
+- name: Demo Playbook
+  connection: local
+  gather_facts: false
+  hosts: all
+  roles:
+  - demorole 
+

@@ -1,0 +1,11 @@
+---
+# tasks file for chapter8gitclone
+- name: Example clone of a single branch
+  ansible.builtin.git:
+    repo: https://github.com/ashutoshc1234/ashutoshc1234.git
+    dest: /tmp/demo
+    single_branch: yes
+- name: copy the index.html to the right directory 
+  ansible.builtin.command: cp /tmp/demo/index.html /var/www/html/
+  become: yes
+

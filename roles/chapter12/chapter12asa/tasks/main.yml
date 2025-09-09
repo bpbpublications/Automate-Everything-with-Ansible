@@ -1,0 +1,4 @@
+- name: Merge provided configuration with device configuration
+  cisco.asa.asa_command:
+    commands: 
+      - show version

@@ -1,0 +1,6 @@
+---
+- name: test
+  connection: local
+  hosts: all
+  roles:
+    - awsec2 

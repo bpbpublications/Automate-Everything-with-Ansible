@@ -1,0 +1,6 @@
+---
+# tasks file for wincopy
+- name: Copy a single file
+  ansible.windows.win_copy:
+    src: ashutosh.txt
+    dest: C:\Users\Administrator\ashuDemo.txt

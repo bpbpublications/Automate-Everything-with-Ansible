@@ -1,0 +1,19 @@
+wget https://bootstrap.pypa.io/get-pip.py -o get-pip.py	
+pythonget-pip.py
+pip install ansible 
+wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tar.xz
+
+Now we need to unzip the file using below commands:
+tar -xJf Python-3.7.4.tar.xz
+
+Let us navigate to the folder and use configure command to install the package:
+cd Python-3.7.4
+./configure
+
+Let us compile the program using make command and then install the python:
+make
+make install
+
+yum install libffi-dev
+python get-pip.py
+pip install ansible 

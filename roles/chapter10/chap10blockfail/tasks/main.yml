@@ -1,0 +1,17 @@
+---
+- name: Task two generate the error
+  block:
+    - name: Debug module 
+      ansible.builtin.debug:
+        msg: 'Normal execution'
+
+    - name: Failure
+      ansible.builtin.command: /bin/false 
+
+    - name: skipped
+      ansible.builtin.debug:
+        msg: 'since the task two failed i will be skipped' 
+  rescue:
+    - name: Rescue code on the target host
+      ansible.builtin.debug:
+        msg: 'There is an error'

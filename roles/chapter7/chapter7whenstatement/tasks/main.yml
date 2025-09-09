@@ -1,0 +1,5 @@
+---
+# tasks file for chapter7commandmodule
+- name: Return motd to registered var
+  ansible.builtin.command: apt install ansible
+  when: ansible_facts['os_family'] == "Debian"

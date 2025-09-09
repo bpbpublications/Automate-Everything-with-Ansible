@@ -1,0 +1,23 @@
+---
+- name: Create a permit rule
+  cp_mgmt_access_rule:
+    auto_publish_session: yes
+    layer: Network
+    position: top
+    name: “permit_rule"
+    source: ciscoasa
+    destination: junipersrx
+    service:
+    - SMTP
+    - AOL
+    action: accept
+
+- name: Demo policy push
+  cp_mgmt_install_policy:
+    access: true
+    policy_package: standard
+    targets:
+    -  i-062f58f0f9324311c
+    threat_prevention: true
+
+

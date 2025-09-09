@@ -1,0 +1,23 @@
+---
+# tasks file for NewVPC7NSG
+- name: NSG
+  ec2_group:
+    name: Anyallow
+    description: any any allowed
+    vpc_id: vpc-0fd436abb9accd2aa
+    region: us-east-2
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    rules:
+      - proto: tcp
+        from_port: 22
+        to_port: 22
+        cidr_ip: 0.0.0.0/0
+    rules_egress:
+      - proto: tcp
+        from_port: 22
+        to_port: 60000
+        cidr_ip: 0.0.0.0/0
+        group_name: outboundrule
+        group_desc: any any instance
+

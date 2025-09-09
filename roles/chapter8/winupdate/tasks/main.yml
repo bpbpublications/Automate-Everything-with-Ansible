@@ -1,0 +1,6 @@
+---
+# tasks file for winupdate
+- name: Install the updates
+  win_updates:
+    category_names:
+      - CriticalUpdates

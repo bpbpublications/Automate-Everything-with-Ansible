@@ -1,0 +1,9 @@
+---
+# tasks file for chapter8createdirectory
+- name: Test website
+  win_feature:
+    name: "Web-Server"
+    state: present
+    restart: yes
+    include sub feature: yes
+    include_management_tools: yes

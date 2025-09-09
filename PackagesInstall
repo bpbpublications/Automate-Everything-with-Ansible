@@ -1,0 +1,23 @@
+•	For Centos: 
+yum install epel-release
+yum install ansible
+•	For Fedora:
+dnf install ansible
+•	For RHEL:
+yum install ansible
+•	For Debian:
+apt install ansible
+• For Ubuntu
+sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository --yes --update ppa:ansible/ansible
+sudo apt install ansible
+• Ansible Core
+pip install ansible-core
+Uninstall Ansible
+•	For Uninstalling Ansible:
+pip uninstall ansible
+•	For uninstalling Ansible-base:
+pip uninstall ansible-base
+•	For uninstalling Ansible-core
+pip uninstall ansible-core

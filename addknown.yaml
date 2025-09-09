@@ -1,0 +1,6 @@
+---
+- hosts: all
+  connection: local
+  gather_facts: no
+  tasks:
+  - shell: "/usr/bin/ssh-keyscan -H {{ ansible_host }} >> ~/.ssh/known_hosts"

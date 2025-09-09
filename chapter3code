@@ -1,0 +1,67 @@
+ansible-playbook serverupgrade.yaml
+ansible-playbook  serverupgrade.yaml -u demouser -k
+ansible-playbook serverupgrade.yaml -u demouser -k -b
+ansible-playbook serverupgrade.yaml-f 2
+ansible-galaxy collection install nameofcollection
+ansible-galaxy collection install nameofcollection–upgrade
+ansible-galaxy collection install nameofcollection:==2.2.1-beta.2
+ansible-galaxy list
+ansible-galaxy remove <name of the role>
+ansible-galaxy init <Name of the Role>
+#Example of tasks
+tasks:
+- name:Disable the Firewall Rule
+  ansible.builtin.command: /usr/sbin/ufw disable
+  when: ansible_facts['os_family'] == "Ubuntu"
+
+  -name: Disable the firewall Rule
+   Ufw disable
+   When: If the firewall OS is Ubuntu
+#Example of Variables:
+
+- hosts: Apachserver
+  vars:
+    http_port: 443
+
+
+Example:
+[WEBSERVER]
+WEBDEMO1 http_port=80 
+WEBSERVERhttp_port=403 
+10.10.10.1 user_name= Demouser
+
+
+Host variable Example:
+[WEBSERVER]
+WEBDEMO1 
+WEBSERVER
+10.10.10.1 
+
+  
+Group variable [WEBSERVER:vars]
+ansible_user= Demouser
+http_port=443
+ansible_ssh_pass=youknowmypassword
+
+Ansible facts Example:
+
+- name: Deubug the variables
+  ansible.builtin.debug:
+    var: ansible_facts
+
+- hosts: Webserver
+  gather_facts: no
+
+
+Registering variable and debug module example 
+
+Example:
+- name: Gather the Uptime of device
+  shell: uptime
+  register: output
+- debug:
+    msg: "{{output.stdout_lines}}"
+Copy Variable example
+- copy:
+    src: /etc/ansible/ansible.cfg
+    dest: ansibleconfigbackup.txt

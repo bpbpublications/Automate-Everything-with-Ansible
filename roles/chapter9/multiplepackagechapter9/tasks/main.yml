@@ -1,0 +1,12 @@
+---
+# tasks file for multiplepackagechapter9
+- name: Install a list of packages (suitable replacement for 2.11 loop deprecation warning)
+  ansible.builtin.yum:
+    name:
+      - postgresql
+      - postgresql-server
+    state: present
+  become: yes
+- name: Install bottle python package
+  ansible.builtin.pip:
+    name: ansible

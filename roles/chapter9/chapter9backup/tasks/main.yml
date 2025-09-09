@@ -1,0 +1,10 @@
+---
+# tasks file for chapter9backup
+- name: Installing the package for the apache server
+  ansible.builtin.copy:
+    src: /tmp/demo/index.html
+    dest: /tmp/
+    remote_src: yes
+    backup: yes
+  become: yes
+

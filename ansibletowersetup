@@ -1,0 +1,45 @@
+yum -y update
+sudodnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo yum -y install ansible
+sudo dnf install ansible -y
+pip2 install ansible
+mkdir /tmp/AshuDemoTower
+cd /tmp/AshuDemoTower
+wget https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz
+dnf install wget -y
+tar vxf ansible-tower-setup-latest.tar.gz
+cd ansible-tower-setup-3.8.6-2/
+# Now run the ls command to view the files in the folder and edit the inventory file from there.
+[root@server]# ls -ltr
+total 60
+-rwxr-xr-x.  1 root root 11357 May  3 17:12 setup.sh
+drwxr-xr-x. 21 root root  4096 May  3 17:12 roles
+-rw-r--r--.  1 root root  3492 May  3 17:12 restore.yml
+-rw-r--r--.  1 root root  1439 May  3 17:12 rekey.yml
+-rw-r--r--.  1 root root  2506 May  3 17:12 README.md
+-rw-r--r--.  1 root root  3185 May  3 17:12 inventory
+-rw-r--r--.  1 root root  8524 May  3 17:12 install.yml
+-rw-r--r--.  1 root root   626 May  3 17:12 backup.yml
+drwxr-xr-x.  3 root root  8192 May  3 17:15 licenses
+drwxr-xr-x.  3 root root    33 May  3 17:15 collections
+drwxr-xr-x.  2 root root    17 May  3 17:15 group_vars
+
+vi inventory 
+[tower]
+localhost ansible_connection=local
+[database]
+[all:vars]
+admin_password='WriteYour password here'
+pg_host=''
+pg_port=''
+pg_database='awx'
+pg_username='awx'
+pg_password='WriteYour password here'
+rabbitmq_username=tower
+rabbitmq_password='WriteYour password here'
+rabbitmq_cookie=cookiemonster
+
+#run the shell script using 'shsetup.sh'
+shsetup.sh
+
+

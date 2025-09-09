@@ -1,0 +1,13 @@
+---
+- name: AWS With Ansible EC2 Demo
+  ec2:
+    key_name: MyATower
+    instance_type: t2.micro
+    image: ami-0b0dcb5067f052a63
+    region: us-east-1
+    wait: yes
+    group: CentOS 7 (x86_64) - with Updates HVM-CentOS-7.2009-20220825.1-AutogenByAWSMP--1
+    count: 1
+    vpc_subnet_id: subnet-01df03e7847aebce0
+    assign_public_ip: yes
+

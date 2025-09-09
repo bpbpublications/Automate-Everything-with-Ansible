@@ -1,0 +1,10 @@
+---
+- name: Configure the hostname of the target host
+  ios_config:
+    lines: 
+    - nei 10.10.10.12 remote-as 65002
+    - nei 10.10.10.12 ebgp-mul 5
+    parents: router bgp 65001
+  register: output
+- debug:
+    msg: "{{output}}"

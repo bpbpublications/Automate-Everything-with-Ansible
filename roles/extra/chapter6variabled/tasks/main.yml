@@ -1,0 +1,9 @@
+---
+# tasks file for testing
+- name: Creating resource group
+  azure_rm_resourcegroup:
+    name: "testingawerf"
+    location: "eastus"
+  register: variable
+- debug:
+    msg: "{{variable.state.name}}"

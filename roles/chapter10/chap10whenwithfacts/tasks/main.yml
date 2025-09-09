@@ -1,0 +1,14 @@
+---
+# tasks file for chap10whenwithfacts
+- name: Install HTTPD
+  ansible.builtin.apt:
+    upgrade: dist
+  become: yes
+  when: ansible_facts['os_family'] == "Debian"  
+
+- name: Install bottle python package
+  ansible.builtin.dnf:
+    name: '*'
+    state: latest
+  become: yes
+  when: ansible_facts['os_family'] == "RedHat"

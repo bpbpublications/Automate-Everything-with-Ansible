@@ -1,0 +1,4 @@
+---
+- name: load new acl into device
+  ios_config:
+    diff_against: startup

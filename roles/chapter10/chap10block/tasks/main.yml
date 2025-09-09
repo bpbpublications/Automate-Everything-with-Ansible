@@ -1,0 +1,21 @@
+---
+- name: And the user demo
+  block:
+    - name: Update dist
+      ansible.builtin.apt: 
+        upgrade: dist
+      become: yes
+    
+    - name: Add the user demo
+      ansible.builtin.apt:
+        name: ansible
+        state: present
+      become: yes
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Install bottle python package
+  ansible.builtin.dnf:
+    name: '*'
+    state: latest
+  become: yes
+  when: ansible_facts['os_family'] == "RedHat"

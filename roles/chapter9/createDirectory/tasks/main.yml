@@ -1,0 +1,8 @@
+---
+# tasks file for createDirectory
+- name: Create a file
+  ansible.windows.win_file:
+    path: C:\Users\Administrator\Abcd.txt
+    state: touch
+
+

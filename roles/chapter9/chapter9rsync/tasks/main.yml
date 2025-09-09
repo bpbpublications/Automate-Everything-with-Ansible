@@ -1,0 +1,6 @@
+---
+# tasks file for chapter9rsync
+- name: Synchronization
+  ansible.posix.synchronize:
+    src: /etc/ansible
+    dest: /tmp

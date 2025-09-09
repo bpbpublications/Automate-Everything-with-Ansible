@@ -1,0 +1,7 @@
+---
+# tasks file for chapter8winIIS
+- name: Test website
+  win_iis_website:
+    name: "Default Website"
+    state: absent
+

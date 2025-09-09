@@ -1,0 +1,4 @@
+- name: Demo of Hostname
+  junipernetworks.junos.junos_hostname:
+    config:
+      hostname: 'ashutosh'

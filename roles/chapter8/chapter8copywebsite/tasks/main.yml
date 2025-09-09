@@ -1,0 +1,13 @@
+---
+# tasks file for chapter8copywebsite
+- name: Copy file with owner and permissions
+  ansible.builtin.copy:
+    src: index.html
+    dest: /var/www/html/index.html
+    owner: ashutmch
+    group: ashutmch
+    mode: '0644'
+- name: Start service httpd, if not started
+  ansible.builtin.service:
+    name: httpd
+    state: started

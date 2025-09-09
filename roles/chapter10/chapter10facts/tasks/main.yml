@@ -1,0 +1,6 @@
+---
+- name: Information about the target host 
+  ansible.builtin.gather_facts:
+  register: output
+- debug:
+    msg: "{{output}}" 

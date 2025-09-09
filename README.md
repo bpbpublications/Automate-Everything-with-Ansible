@@ -1,2 +1,2 @@
-# Automate Everything with Ansible
-Automate Everything with Ansible, by BPB Publications
+# bpbansiblerepo
+This repo is created for all the students of BPB 

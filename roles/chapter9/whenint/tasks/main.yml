@@ -1,0 +1,4 @@
+---
+- name: Gather the information about the target host
+  shell: uptime
+

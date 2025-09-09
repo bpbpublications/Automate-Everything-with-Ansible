@@ -1,0 +1,14 @@
+---
+# tasks file for NewVPC and we will run our first VPC from Zero
+- name: Demo VPC
+  ec2_vpc_net:
+    name: TinyNetwork
+    cidr_block: 10.45.25.0/24
+    region: us-east-2
+    tenancy: dedicated
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    register: subnetinfo
+- debug:
+    msg: "{{ subnetinfo.vpc }}" 
+                

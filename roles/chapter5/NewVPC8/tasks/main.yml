@@ -1,0 +1,76 @@
+---
+# tasks file for NewVPC and we will run our first VPC from Zero
+- name: Demo VPC
+  ec2_vpc_net:
+    name: TinyNetwork
+    cidr_block: 10.45.25.0/24
+    region: us-east-2
+    tenancy: dedicated
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+  register: subnetinfo
+- debug:
+    msg: "{{ subnetinfo.vpc.id }}" 
+
+- name: How to create the Subnet in AWS using Ansible
+  ec2_vpc_subnet:
+    state: present
+    vpc_id: "{{subnetinfo.vpc.id}}"
+    cidr: 10.45.25.0/26
+    region: us-east-2
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+
+- name: Create the Internet Gateway
+  ec2_vpc_igw:
+    vpc_id: "{{subnetinfo.vpc.id}}"
+    state: present
+    region: us-east-2
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+  register: igw
+
+- name: Set up public subnet route table
+  ec2_vpc_route_table:
+    vpc_id:  "{{subnetinfo.vpc.id}}"
+    region: us-east-2
+    subnets:
+      - 10.45.25.0/26
+    routes:
+      - dest: 0.0.0.0/0
+    gateway_id: "{{ igw.gateway_id }}"
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+  register: defaultroute
+- name: NSG
+  ec2_group:
+    name: Anyallow
+    description: any any allowed
+    vpc_id: vpc-0fd436abb9accd2aa
+    region: us-east-2
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    rules:
+      - proto: tcp
+        from_port: 22
+        to_port: 22
+        cidr_ip: 0.0.0.0/0
+    rules_egress:
+      - proto: tcp
+        from_port: 22
+        to_port: 60000
+        cidr_ip: 0.0.0.0/0
+        group_name: outboundrule
+        group_desc: any any instance
+- ec2_instance:
+    name: FullflowVPC
+    key_name: VPCE2E
+    vpc_subnet_id: "{{variablesub.subnet.id}}"
+    instance_type: t2.micro
+    security_group: "{{varnsg.group_id}}"
+    network:
+      assign_public_ip: true
+    image_id: ami-0a606d8395a538502
+    region: us-east-2
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"

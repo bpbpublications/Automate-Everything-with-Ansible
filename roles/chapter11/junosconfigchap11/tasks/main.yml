@@ -1,0 +1,7 @@
+---
+- name: collect default set of facts
+  junipernetworks.junos.junos_config:
+    lines:
+    - set groups aws-default system login user demo authentication encrypted-password "$6$80CNISFDSDFSDFSDFSDF"
+    - set groups aws-default system login user demo class super-user
+   

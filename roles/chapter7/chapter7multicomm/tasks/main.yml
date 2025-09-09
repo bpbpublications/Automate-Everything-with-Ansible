@@ -1,0 +1,8 @@
+---
+# tasks file for chapter7multicomm
+- name: Run expect to wait for a successful PXE boot via out-of-band CIMC
+  ansible.builtin.shell: |
+    uptime
+    cat /etc/hosts
+    ls -ltr
+    echo "{{ansible_distribution_version}}"

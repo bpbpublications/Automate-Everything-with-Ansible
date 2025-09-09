@@ -1,0 +1,5 @@
+---
+# tasks file for chap13infoimage
+- name: Image details
+  docker_image_info:
+    name: hello-world

@@ -1,0 +1,9 @@
+---
+- name: Configure the hostname of the target host
+  ios_config:
+    lines:
+    - hostname: DemoIOSConfig
+    - line vty4 15
+  register: output
+- debug:
+    msg: "{{output}}"

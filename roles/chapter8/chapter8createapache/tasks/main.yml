@@ -1,0 +1,10 @@
+---
+# tasks file for chapter8createapache
+- name: Installing the package for the apache server
+  ansible.builtin.yum:
+    name: httpd
+    state: latest
+  become: yes
+- name: change the permission for the folders
+  ansible.builtin.command: /usr/bin/chmod -R 777 /var 
+  become: yes

@@ -1,0 +1,7 @@
+---
+# tasks file for chapter8nginx
+- name: start service HTTPD , if not started
+  service:
+    name: nginx
+    state: started
+  become: yes

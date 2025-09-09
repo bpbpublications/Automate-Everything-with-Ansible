@@ -1,0 +1,5 @@
+#EC2 instance provisioning Demo
+- name: Ansible AWS EC2 instance Demo
+  hosts: localhost
+  roles:
+  - EC2Restart  

@@ -1,0 +1,14 @@
+---
+- name: Demo VM
+  azure_rm_virtualmachine:
+    resource_group: testing
+    name: DummmyVM
+    admin_username: demouser
+    admin_password: demouser@1234demo
+    image:
+      offer: Centos
+      publisher: OpenLogic
+      sku: '7.7'
+      version: latest
+    vm_size: Standard_DS3_v2
+

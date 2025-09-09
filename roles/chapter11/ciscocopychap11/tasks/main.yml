@@ -1,0 +1,9 @@
+---
+- name: Demo of Cisco IOS router 
+  cisco.ios.ios_command:
+    commands: 
+      - show version | i uptime
+  register: output
+- copy:
+    content: "{{output}}"
+    dest: "showversionoutput"

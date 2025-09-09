@@ -1,0 +1,8 @@
+---
+- name: Our first container using ansible 
+  community.docker.docker_container:
+    name: mydata
+    image: busybox
+    volumes:
+      - /data
+    state: absent 

@@ -1,0 +1,8 @@
+---
+# tasks file for chapter9db
+- name: Create a Dump
+  community.postgresql.postgresql_db:
+    name: acme
+    state: dump
+    target: /tmp/acme.sql.gz
+
